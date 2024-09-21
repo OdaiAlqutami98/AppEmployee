@@ -1,0 +1,59 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+  <!-- Name -->
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input id="name" formControlName="name" type="text" class="form-control" />
+    <div
+      *ngIf="employeeForm.get('name')?.invalid && (employeeForm.get('name')?.touched || employeeForm.get('name')?.dirty)"
+      class="error-message">
+      Name is required
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" formControlName="email" type="email" class="form-control" />
+    <div
+      *ngIf="employeeForm.get('email')?.invalid && (employeeForm.get('email')?.touched || employeeForm.get('email')?.dirty)"
+      class="error-message">
+      <div *ngIf="employeeForm.get('email')?.errors?.['required']">Email is required</div>
+      <div *ngIf="employeeForm.get('email')?.errors?.['email']">Please enter a valid email</div>
+    </div>
+  </div>
+
+  <!-- Mobile Number -->
+  <div class="form-group">
+    <label for="mobileNumber">Mobile Number</label>
+    <input id="mobileNumber" formControlName="mobileNumber" type="text" class="form-control" />
+    <div
+      *ngIf="employeeForm.get('mobileNumber')?.invalid && (employeeForm.get('mobileNumber')?.touched || employeeForm.get('mobileNumber')?.dirty)"
+      class="error-message">
+      Mobile number is required
+    </div>
+  </div>
+
+  <!-- Home Address -->
+  <div class="form-group">
+    <label for="homeAddress">Home Address</label>
+    <input id="homeAddress" formControlName="homeAddress" type="text" class="form-control" />
+    <div
+      *ngIf="employeeForm.get('homeAddress')?.invalid && (employeeForm.get('homeAddress')?.touched || employeeForm.get('homeAddress')?.dirty)"
+      class="error-message">
+      Home address is required
+    </div>
+  </div>
+
+  <!-- File Path -->
+  <div class="form-group">
+    <label for="ImagePath">File Path</label>
+    <input id="ImagePath" formControlName="ImagePath" type="text" class="form-control" />
+  </div>
+
+  <!-- Submit Button -->
+  <div class="form-group button-container">
+    <button type="submit" [disabled]="employeeForm.invalid" class="btn btn-primary">
+      {{ isEditMode ? 'Update' : 'Add' }} Employee
+    </button>
+  </div>
+</form>
